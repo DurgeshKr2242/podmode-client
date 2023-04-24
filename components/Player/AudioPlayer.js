@@ -1,25 +1,15 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import { PODCASTS_LIST } from "/seed/data";
-import Image from "next/image";
-import {
-  IoPlay,
-  IoPause,
-  IoPlayForward,
-  IoPlaySkipForward,
-} from "react-icons/io5";
-import { BiFastForward } from "react-icons/bi";
+import { IoPlay, IoPause, IoPlaySkipForward } from "react-icons/io5";
 import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
 import { BsMusicNoteBeamed } from "react-icons/bs";
-import { FaStepBackward } from "react-icons/fa";
-import { current } from "tailwindcss/colors";
 import { useGlobalPlayerContext } from "/context/PlayerContext";
+import { BsFillCameraVideoFill } from "react-icons/bs";
 import axios from "axios";
-
+import { AiOutlineClose } from "react-icons/ai";
 const AudioPlayer = () => {
   const { currentTrack, setCurrentTrack } = useGlobalPlayerContext();
   const [progressBarVal, setProgressBarVal] = useState(0);
   const [progressBarMax, setProgressBarMax] = useState(0);
-  //   const [currentTrack, setCurrentTrack] = useState(PODCASTS_LIST[0]);
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const audioRef = useRef();
@@ -111,24 +101,18 @@ const AudioPlayer = () => {
           className="left-0 right-0 top-0 absolute in-range:bg-gray-200 out-of-range:bg-green-500 h-[4px] bg-gray-200 rounded-t-xl range-sm appearance-none cursor-pointer"
         />
         <div className="flex items-start justify-start gap-8">
-          {currentTrack?.image ? (
-            <div className="relative w-[70px] h-[70px] ">
-              <Image
-                src={currentTrack?.image}
-                alt="placeholderPodcastImage"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-            </div>
+          {currentTrack.type.toLowerCase() !== "audio" ? (
+            <p className="p-3 text-3xl bg-gray-400 rounded-xl">
+              <BsFillCameraVideoFill />
+            </p>
           ) : (
-            <p className="p-4 text-4xl bg-gray-300 rounded-xl">
+            <p className="p-3 text-3xl bg-gray-400 rounded-xl">
               <BsMusicNoteBeamed />
             </p>
           )}
           <div className="flex flex-col items-start justify-start gap-1">
             <p className="text-lg font-semibold">{currentTrack?.name}</p>
-            <p className="opacity-70">{currentTrack?.user}</p>
+            <p className="opacity-70">#{currentTrack?.category}</p>
           </div>
         </div>
         <div className="flex items-center justify-center gap-6">
@@ -187,6 +171,12 @@ const AudioPlayer = () => {
             >
               <p className="text-xs font-semibold">+15s</p>{" "}
               <IoPlaySkipForward />
+            </button>
+            <button
+              onClick={() => setCurrentTrack(null)}
+              className="ml-4 text-2xl"
+            >
+              <AiOutlineClose />
             </button>
           </div>
         </div>

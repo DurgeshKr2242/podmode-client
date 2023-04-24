@@ -16,7 +16,7 @@ const PrimaryButton = ({
       onClick={handleClick}
       className={`px-12 text-lg py-3 ${
         fullWidth && "w-full"
-      }  flex items-center justify-center gap-2 font-semibold border-[2px] ${
+      }  flex items-center justify-center gap-2 font-semibold  border-[2px] ${
         color === "white"
           ? "border-white text-white hover:bg-white hover:text-Black"
           : "border-Black text-Black hover:bg-Black hover:text-white"
@@ -25,7 +25,9 @@ const PrimaryButton = ({
       {isLoading ? (
         <div
           className={`w-8 h-8 border-2 border-b-0 border-r-0 rounded-full animate-spin  ${
-            color === "white" ? "border-white " : "border-Black "
+            color === "white"
+              ? "hover:border-black border-white "
+              : "hover:border-white border-Black "
           }`}
         />
       ) : (

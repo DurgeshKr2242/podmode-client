@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/legacy/image";
 import { BsArrowUpRight, BsMusicNoteBeamed } from "react-icons/bs";
 
-import placeholderPodcastImage from "./assets/placeholderPodcastImage.jpg";
 import { PODCASTS_LIST } from "/seed/data";
 import PrimaryButton from "../UI/Button/PrimaryButton";
 import { useGlobalAuthContext } from "/context/AuthContext";
 import { useRouter } from "next/router";
+import axios from "axios";
+import Loader from "../UI/Loader";
+import { useGlobalPlayerContext } from "/context/PlayerContext";
+import { BsFillCameraVideoFill } from "react-icons/bs";
 
-const HeroSection = () => {
-  const { user, setShowBecomeCreator } = useGlobalAuthContext();
+const HeroSection = ({ recentPodcasts }) => {
+  const { user, setShowBecomeCreator, isLoading } = useGlobalAuthContext();
   const [showSwitch, setShowSwitch] = useState(false);
+  const { currentTrack, setCurrentTrack } = useGlobalPlayerContext();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,12 +23,14 @@ const HeroSection = () => {
   }, []);
   const router = useRouter();
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="z-10 flex flex-col items-start justify-center w-full h-screen gap-10">
       {/* <p className="w-full font-black leading-snug text-left uppercase max-w-7xl text-7xl">
         We&apos;ve got a greate show for you today.
       </p> */}
-      <div className="w-full font-black leading-snug text-left uppercase max-w-7xl text-7xl">
+      <div className="w-full max-w-full text-5xl font-black leading-snug text-left uppercase tablet:max-w-7xl tablet:text-7xl">
         <p>
           Le&apos;ts turn the POD<span className="text-green-500">MODE</span>
         </p>
@@ -56,7 +61,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-start justify-center gap-10 ">
+      <div className="flex flex-col items-start justify-center gap-10 tablet:flex-row ">
         <div className="flex flex-col items-start justify-start w-full basis-2/3">
           <p className="mt-2 text-lg opacity-70">
             Lorem ipsum dolor sit amet consectetur ipsum dolor sit amet
@@ -74,23 +79,21 @@ const HeroSection = () => {
           <p className="text-lg font-bold">Most recent podcast</p>
           <div className="flex flex-col items-start justify-start w-full overflow-y-auto h-52">
             {/*  */}
-            {PODCASTS_LIST.map((podcast, i) => {
+            {recentPodcasts?.map((podcast, i) => {
               return (
-                <div className="w-full pr-10" key={i}>
+                <div
+                  onClick={() => setCurrentTrack(podcast)}
+                  className="w-full pr-10 cursor-pointer"
+                  key={i}
+                >
                   <div className="flex items-center justify-center gap-6">
                     <p className="text-4xl font-black">{i + 1}.</p>
-                    {podcast.image ? (
-                      <div className="relative w-[140px] h-[70px] ">
-                        <Image
-                          src={podcast.image}
-                          alt="placeholderPodcastImage"
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-lg"
-                        />
-                      </div>
+                    {podcast.type.toLowerCase() !== "audio" ? (
+                      <p className="p-5 text-4xl bg-gray-400 rounded-xl">
+                        <BsFillCameraVideoFill />
+                      </p>
                     ) : (
-                      <p className="p-5 text-4xl bg-gray-300 rounded-xl">
+                      <p className="p-5 text-4xl bg-gray-400 rounded-xl">
                         <BsMusicNoteBeamed />
                       </p>
                     )}
@@ -101,7 +104,7 @@ const HeroSection = () => {
                     </div>
                   </div>
 
-                  {i !== PODCASTS_LIST.length - 1 && (
+                  {i !== recentPodcasts?.length - 1 && (
                     <div className="w-full my-4 h-[2px] rounded-full bg-white/20"></div>
                   )}
                 </div>

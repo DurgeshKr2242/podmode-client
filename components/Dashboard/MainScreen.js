@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BsArrowUpRight } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
 import { BsMusicNoteBeamed } from "react-icons/bs";
-import Image from "next/legacy/image";
 import { useGlobalPlayerContext } from "/context/PlayerContext";
-import { PODCASTS_LIST } from "/seed/data";
 import Modal from "../UI/Modal";
 import { useGlobalAuthContext } from "/context/AuthContext";
 import CreateNewModal from "./CreateNewModal";
 import { useGlobalDashboardContext } from "/context/DashboardContext";
+import { BsFillCameraVideoFill } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import axios from "axios";
 import Loader from "../UI/Loader";
@@ -27,7 +26,6 @@ const MainScreen = () => {
   const { setCurrentTrack } = useGlobalPlayerContext();
 
   const [isListView, setIsListView] = useState(true);
-  // const [allUserPodcast, setAllUsersPodcast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const getAllPodcastByUserId = async () => {
@@ -53,11 +51,6 @@ const MainScreen = () => {
     };
     getAllPodcastByUserId();
   }, []);
-
-  const handlePlay = (url) => {
-    const audio = new Audio(url);
-    audio.play();
-  };
 
   return isLoading ? (
     <Loader />
@@ -108,18 +101,12 @@ const MainScreen = () => {
                 <div className="flex items-center justify-between w-full px-2 pr-10">
                   <div className="flex items-center justify-center gap-8">
                     <p className="text-4xl font-bold">0{i + 1}.</p>
-                    {podcast.image ? (
-                      <div className="relative w-[140px] h-[70px] ">
-                        <Image
-                          src={podcast.image}
-                          alt="placeholderPodcastImage"
-                          layout="fill"
-                          objectFit="cover"
-                          className="rounded-lg"
-                        />
-                      </div>
+                    {podcast.type.toLowerCase() !== "audio" ? (
+                      <p className="p-5 text-4xl bg-gray-400 rounded-xl">
+                        <BsFillCameraVideoFill />
+                      </p>
                     ) : (
-                      <p className="w-[140px] h-[70px] flex items-center justify-center text-3xl bg-gray-300 rounded-xl">
+                      <p className="p-5 text-4xl bg-gray-400 rounded-xl">
                         <BsMusicNoteBeamed />
                       </p>
                     )}

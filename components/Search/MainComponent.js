@@ -1,20 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import Input from "../UI/Input";
+import Loader from "../UI/Loader";
+import { useGlobalAuthContext } from "/context/AuthContext";
+import { BsFillCameraVideoFill } from "react-icons/bs";
 import { BsMusicNoteBeamed } from "react-icons/bs";
 import { IoPlay } from "react-icons/io5";
-import { FaListUl } from "react-icons/fa";
 import axios from "axios";
-import { BsFillCameraVideoFill } from "react-icons/bs";
-import Loader from "../UI/Loader";
-import { useRouter } from "next/router";
-import { useGlobalPlayerContext } from "/context/PlayerContext";
-
-const MainScreen = () => {
-  const { setCurrentTrack } = useGlobalPlayerContext();
-  const [isListView, setIsListView] = useState(true);
+const MainComponent = () => {
+  const [searchText, setSearchText] = useState("");
   const [allPodcast, setAllPodcast] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [filteredPodcast, setFilteredPodcast] = useState(allPodcast);
+  const [isListView, setIsListView] = useState(true);
 
+  useEffect(() => {
+    if (searchText) {
+      const temp = allPodcast.filter((podcast) =>
+        podcast.name.toLowerCase().includes(searchText)
+      );
+      console.log(temp);
+      setFilteredPodcast(temp);
+    } else setFilteredPodcast(allPodcast);
+  }, [searchText, allPodcast]);
+
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     const getAllPodcast = async () => {
       setIsLoading(true);
@@ -37,38 +45,28 @@ const MainScreen = () => {
   return isLoading ? (
     <Loader />
   ) : (
-    <div className="z-10 flex flex-col items-center justify-center w-full h-full pb-20 mt-52">
+    <div className="flex flex-col items-center justify-center w-full h-full pb-20 mt-52">
       {/* TOP SECTION */}
       <div className="flex items-center justify-center w-full gap-20">
         <div className="flex items-center justify-center w-full basis-1/2">
           <p className="text-6xl font-bold uppercase">
-            Here is all our podcasts!
+            Search for a podcast here
           </p>
         </div>
         <div className="flex flex-col items-start justify-center w-full gap-4 basis-1/2">
           <p className="text-lg opacity-70">
-            List of all your podcasts List of all your podcasts List of all your
-            podcasts List{" "}
+            write the name of your podcast here to search
           </p>
-          <div className="flex items-center justify-center gap-4">
-            <button
-              onClick={() => router.push("/create/dashboard")}
-              className="px-12 text-lg py-3 flex items-center justify-center gap-2 font-semibold border-[2px] rounded-xl"
-            >
-              Create New
-            </button>
-
-            <button
-              onClick={() => setIsListView(!isListView)}
-              className="px-6 text-lg py-3 flex items-center justify-center gap-2 font-semibold border-[2px] rounded-xl"
-            >
-              <FaListUl />
-            </button>
+          <div className="flex items-center justify-center gap-4 text-black">
+            <Input
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
           </div>
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-between w-full mt-24 rounded-xl">
-        {allPodcast.map((podcast, i) => {
+        {filteredPodcast.map((podcast, i) => {
           return (
             <div
               className={`flex flex-col items-center justify-center ${
@@ -117,4 +115,4 @@ const MainScreen = () => {
   );
 };
 
-export default MainScreen;
+export default MainComponent;
