@@ -32,7 +32,7 @@ const HeroSection = ({ recentPodcasts }) => {
       </p> */}
       <div className="w-full max-w-full text-5xl font-black leading-snug text-left uppercase tablet:max-w-7xl tablet:text-7xl">
         <p>
-          Le&apos;ts turn the POD<span className="text-green-500">MODE</span>
+          Let&apos;s turn the POD<span className="text-green-500">MODE</span>
         </p>
         <div className="w-[120px] overflow-hidden flex items-center justify-start mt-8">
           <p
