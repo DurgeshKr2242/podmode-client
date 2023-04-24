@@ -40,7 +40,7 @@ const Header = () => {
             <Link href="/">Home </Link>
             <Link href="/all">All Podcasts</Link>
             <Link href="/search">Search</Link>
-            <li>About Us</li>
+            <Link href="/aboutus">About Us</Link>
             <PrimaryButton
               handleClick={() => router.push("/create/dashboard")}
               size="small"
@@ -69,7 +69,7 @@ const Header = () => {
           <Link href="/">Home </Link>
           <Link href="/all">All Podcasts</Link>
           <Link href="/search">Search</Link>
-          <li>About Us</li>
+          <Link href="/aboutus">About Us</Link>
           <PrimaryButton
             handleClick={() => {
               user ? router.push("/create/dashboard") : setShowLoginModal(true);
