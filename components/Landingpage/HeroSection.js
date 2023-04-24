@@ -64,9 +64,8 @@ const HeroSection = ({ recentPodcasts }) => {
       <div className="flex flex-col items-start justify-center gap-10 tablet:flex-row ">
         <div className="flex flex-col items-start justify-start w-full basis-2/3">
           <p className="mt-2 text-lg opacity-70">
-            Lorem ipsum dolor sit amet consectetur ipsum dolor sit amet
-            consectetur adipisicing elit. Soluta, adipisicing elit. Soluta,
-            maioresmaiores!
+            Listen and create the best podcasts in both audio and video format.
+            Lets go!
           </p>
 
           <div className="z-10 flex items-center justify-start w-full gap-6 my-10">
