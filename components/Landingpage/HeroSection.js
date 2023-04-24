@@ -69,7 +69,7 @@ const HeroSection = ({ recentPodcasts }) => {
           </p>
 
           <div className="z-10 flex items-center justify-start w-full gap-6 my-10">
-            <PrimaryButton>
+            <PrimaryButton handleClick={() => router.push("/all")}>
               Show All Podcast <BsArrowUpRight className="text-2xl" />
             </PrimaryButton>
           </div>
