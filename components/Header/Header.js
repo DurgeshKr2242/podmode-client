@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div className="absolute top-0 left-0 right-0 flex items-center justify-center w-full">
-      <div className="w-full relative max-w-[1400px] flex items-center h-[120px] justify-between px-8 z-50">
+      <div className="w-full relative max-w-[1400px] flex items-center h-[120px] justify-between px-8 z-40">
         <Link href="/" className="text-2xl font-black">
           PODMODE
         </Link>
@@ -32,11 +32,11 @@ const Header = () => {
           onClick={() => setShowMobileMenu(!showMobileMenu)}
           className="flex text-4xl tablet:hidden"
         >
-          {showMobileMenu ? <HiMenuAlt4 /> : <IoCloseSharp />}
+          {!showMobileMenu ? <HiMenuAlt4 /> : <IoCloseSharp />}
         </button>
 
         {showMobileMenu && (
-          <ul className="absolute top-[100px] bg-black shadow-md rounded-b-xl py-6 flex flex-col items-center justify-center w-full gap-8 ">
+          <ul className="absolute top-[100px] left-0 right-0 bg-black shadow-md rounded-b-xl py-6 flex flex-col items-center justify-center gap-8 ">
             <Link href="/">Home </Link>
             <Link href="/all">All Podcasts</Link>
             <Link href="/search">Search</Link>

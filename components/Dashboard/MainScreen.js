@@ -68,7 +68,7 @@ const MainScreen = () => {
             </span>
           </p>
         )}
-        <div className="flex items-center justify-center w-full gap-20">
+        <div className="flex flex-col items-center justify-center w-full gap-20 tablet:flex-row">
           <div className="flex items-center justify-center w-full basis-1/2">
             <p className="text-6xl font-bold uppercase">
               Podcasts you&apos;hv uploaded
@@ -99,19 +99,21 @@ const MainScreen = () => {
                 key={i}
               >
                 <div className="flex items-center justify-between w-full px-2 pr-10">
-                  <div className="flex items-center justify-center gap-8">
-                    <p className="text-4xl font-bold">0{i + 1}.</p>
-                    {podcast.type.toLowerCase() !== "audio" ? (
-                      <p className="p-5 text-4xl bg-gray-400 rounded-xl">
-                        <BsFillCameraVideoFill />
-                      </p>
-                    ) : (
-                      <p className="p-5 text-4xl bg-gray-400 rounded-xl">
-                        <BsMusicNoteBeamed />
-                      </p>
-                    )}
+                  <div className="flex flex-col items-center justify-center gap-8 tablet:flex-row">
+                    <div className="flex items-center justify-center gap-8">
+                      <p className="text-4xl font-bold">0{i + 1}.</p>
+                      {podcast.type.toLowerCase() !== "audio" ? (
+                        <p className="p-5 text-4xl bg-gray-400 rounded-xl">
+                          <BsFillCameraVideoFill />
+                        </p>
+                      ) : (
+                        <p className="p-5 text-4xl bg-gray-400 rounded-xl">
+                          <BsMusicNoteBeamed />
+                        </p>
+                      )}
+                    </div>
 
-                    <div className="flex flex-col items-start justify-start w-full gap-1 text-lg">
+                    <div className="flex flex-col items-start justify-start w-full gap-1 mt-4 text-lg">
                       <p className="flex items-center justify-center gap-2 font-semibold">
                         {podcast.name}{" "}
                       </p>

@@ -39,16 +39,16 @@ const MainScreen = () => {
   ) : (
     <div className="z-10 flex flex-col items-center justify-center w-full h-full pb-20 mt-52">
       {/* TOP SECTION */}
-      <div className="flex items-center justify-center w-full gap-20">
+      <div className="flex flex-col items-center justify-center w-full gap-20 tablet:flex-row">
         <div className="flex items-center justify-center w-full basis-1/2">
-          <p className="text-6xl font-bold uppercase">
+          <p className="text-5xl font-bold uppercase tablet:text-6xl">
             Here is all our podcasts!
           </p>
         </div>
         <div className="flex flex-col items-start justify-center w-full gap-4 basis-1/2">
           <p className="text-lg opacity-70">
             List of all your podcasts List of all your podcasts List of all your
-            podcasts List{" "}
+            podcasts List
           </p>
           <div className="flex items-center justify-center gap-4">
             <button

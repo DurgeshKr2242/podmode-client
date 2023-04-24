@@ -47,7 +47,7 @@ const MainComponent = () => {
   ) : (
     <div className="flex flex-col items-center justify-center w-full h-full pb-20 mt-52">
       {/* TOP SECTION */}
-      <div className="flex items-center justify-center w-full gap-20">
+      <div className="flex flex-col items-center justify-center w-full gap-20 tablet:flex-row">
         <div className="flex items-center justify-center w-full basis-1/2">
           <p className="text-6xl font-bold uppercase">
             Search for a podcast here

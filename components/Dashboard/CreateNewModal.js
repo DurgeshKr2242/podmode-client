@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../UI/Input";
 import FormData from "form-data";
 import axios from "axios";
@@ -23,6 +23,13 @@ const CreateNewModal = () => {
   const [category, setCategory] = useState("");
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const audio = new Audio(file);
+    audio.addEventListener("loadedmetadata", () => {
+      setDuration(audio.duration);
+    });
+  }, [file]);
 
   const createPodcastHandler = async (e) => {
     setSuccessAleart("");
@@ -79,7 +86,7 @@ const CreateNewModal = () => {
   };
 
   return (
-    <div className="w-[500px] flex items-center justify-center flex-col gap-6 bg-white rounded-xl  text-Black py-8 px-14">
+    <div className="w-[500px] h-[500px] flex items-center justify-start overflow-y-scroll flex-col gap-6 bg-white rounded-xl  text-Black py-8 px-14">
       <p className="text-2xl font-bold uppercase">Upload a new podcast</p>
       <div className="flex flex-col w-full gap-4">
         <input
@@ -100,12 +107,20 @@ const CreateNewModal = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
+        <label className="flex flex-col items-start justify-start w-full">
+          Type
+          <select value={type} onChange={(e) => setType(e.target.value)}>
+            <option value="audio">Audio</option>
+            <option value="video">Video</option>
+          </select>
+        </label>
+        {/* <input type="text" />
         <Input
           label="Type"
           placeholder="Enter the type of your podcast"
           value={type}
           onChange={(e) => setType(e.target.value)}
-        />
+        /> */}
         <Input
           label="speaker"
           placeholder="Enter the name of your podcast"
