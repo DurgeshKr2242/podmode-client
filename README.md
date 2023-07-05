@@ -1,38 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Podcast Web Application
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Podcast Web Application is a web-based application that allows users to browse, listen to, and create podcasts. The main objective of this project was to create a user-friendly application that would provide a platform for users to listen to their favorite podcasts from any device with internet access.
+* Video Demo link: https://drive.google.com/file/d/1Gc3Zx9a6kakB0lsefXPx_5bAsdgZwIP1/view?usp=sharing
+* Deployed Link: https://podmode.vercel.app/
+* Github Link : 
+	* Client: https://github.com/DurgeshKr2242/podmode-client
+	* Server: https://github.com/DurgeshKr2242/podmode-server
+ 
+## Goals
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+* To create a user-friendly web application for browsing and listening to podcasts.
+* To allow the user to log in to the web application through email and password.
+* To implement search functionality for users to easily find and access desired podcasts.
+* To allow users to listen to the most popular podcasts.
+* To develop an easy-to-use dashboard interface for uploading new podcasts to the platform in the Audio/Video format.
+* To ensure that the application is accessible from any device with internet access.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Development Process
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+* **Planning:** The team held a series of meetings to discuss the project requirements and plan the development process.
+* **Design:** The designer created wireframes and mockups for the application's interface, which were reviewed by the team and modified accordingly.
+* **Development:** The developers worked on implementing the features using technologies such as Next Js, TailwindCSS, NodeJS, ExpressJs, Firebase Storage, and Prisma. The team regularly held code reviews and tests to ensure the quality of the code.
+* **Testing:** The application was tested on multiple devices and browsers to ensure that it was accessible and functional. The team also conducted user testing to gather feedback and identify any issues.
+* **Deployment:** Once the application was deemed stable, it was deployed to a server and made available to the public.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Results
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The Podcast Web Application was successfully developed and deployed, achieving all the project objectives. The application's interface is user-friendly, and users can easily browse, search and listen to their favorite podcasts. The application is also optimized for mobile devices, making it accessible to a wider audience.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Conclusion
 
-## Learn More
+The Podcast Web Application project was a success, and the team was able to deliver a user-friendly and functional application within the planned timeline. The Agile development methodology was effective in enabling the team to work collaboratively and prioritize the features based on their importance. The team believes that the application has the potential to become a popular platform for podcast listeners, and they plan to continue improving it with new features and functionalities.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## PODMODE SCREENSHOTS
